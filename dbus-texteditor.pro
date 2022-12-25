@@ -27,9 +27,21 @@ DBUS_ADAPTORS += org.example.dbustexteditor.xml
 DBUS_INTERFACES += org.example.dbustexteditor.xml
 
 # Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /home/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+
+QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/../lib\''
+
+target.path = /usr/share/dbus-texteditor/bin
+target.files = dbus-texteditor qt.conf
+INSTALLS += target
+
+data.path = /usr/share/dbus-texteditor/lib
+data.files = lib/*
+INSTALLS += data
+
+plugins.path = /usr/share/dbus-texteditor/plugins
+plugins.files = plugins/*
+INSTALLS += plugins
 
 DISTFILES += \
-    org.example.dbustexteditor.xml
+    org.example.dbustexteditor.xml \
+    qt.conf
