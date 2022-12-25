@@ -1,0 +1,29 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+    <interface name="org.example.dbustexteditor">
+        <signal name="updatedText">
+            <arg name="senderUuid" type="s"/>
+            <arg name="sessionName" type="s"/>
+            <arg name="text" type="s"/>
+        </signal>
+
+        <method name="setSessionText">
+            <arg name="senderUuid" type="s" direction="in"/>
+            <arg name="sessionName" type="s" direction="in"/>
+            <arg name="text" type="s" direction="in"/>
+            <arg name="isOk" type="b" direction="out"/>
+        </method>
+
+        <method name="getCurrentText">
+            <arg name="sessionName" type="s" direction="in"/>
+            <arg name="text" type="s" direction="out"/>
+        </method>
+
+        <method name="deleteConnection">
+            <arg name="senderUuid" type="s" direction="in"/>
+            <arg name="sessionName" type="s" direction="in"/>
+            <arg name="isOk" type="b" direction="out"/>
+        </method>
+    </interface>
+</node>
