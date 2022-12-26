@@ -1,6 +1,6 @@
 #include "maindbusservice.h"
 #include "mainwindow.h"
-
+#include "dbusconnector.h"
 #include "defs.h"
 
 #include <QCommandLineParser>

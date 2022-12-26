@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "dbusconnector.h"
+#include "defs.h"
 
 #include <QMainWindow>
 
@@ -19,13 +19,24 @@ public:
     void incomingMessageSlot(QString text);
     void setSessionName(QString sessionName);
     void setDetachedSessionName();
+    void setFilename(QString filename);
 
 private slots:
     void on_textEdit_textChanged();
+    void on_actionSave_triggered();
+    void on_actionSave_As_triggered();
+    void on_actionOpen_File_triggered();
+    void on_actionExit_triggered();
 
 private:
     Ui::MainWindow *ui;
-    DBusConnector *m_dbusConnector;
+
+    QString m_textBuffer;
+    QString m_filename;
+    bool saveAsFile();
+    bool saveFile();
+    bool openFile();
+    bool m_isSaved = true;
 
 signals:
     void currentTextChanged(QString text);
